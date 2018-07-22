@@ -19,6 +19,10 @@ isTruthy(false);
 //false
 isTruthy(undefined);
 //false
+isTruthy(NaN);
+//false
+isTruthy(null);
+//false
 
 /*
 Invoque a função criada acima passando como parâmetro 10 valores `truthy`.
@@ -93,7 +97,7 @@ Crie um método chamado `obterMarcaModelo`, que retorne:
 Para retornar os valores de marca e modelo, utilize os métodos criados.
 */
 carro.obterMarcaModelo = function(){
-    return 'Esse carro é um '+ this.marca +' '+this.modelo;
+    return 'Esse carro é um '+ carro.obterMarca() +' '+carro.obterModelo();
 }
 
 /*
@@ -113,13 +117,13 @@ mostrar quantos assentos ainda podem ser ocupados, com a frase:
 citado acima, no lugar de "pessoas".
 */
 carro.addPessoas = function(num){
-    if((this.qtdePessoas+num)<=5){
+    if((this.qtdePessoas+num) <= this.assentos){
         this.qtdePessoas += num;
         return "Já temos "+ this.qtdePessoas +" pessoas no carro!";
     }
     else{
-        if(this.qtdePessoas < 5){
-            return "Só cabem mais "+ (5-this.qtdePessoas) +" pessoas!";
+        if(this.qtdePessoas < this.assentos){
+            return "Só cabem mais "+ (this.assentos - this.qtdePessoas) +" pessoas!";
         }
         else{
             return "O carro já está lotado!";
