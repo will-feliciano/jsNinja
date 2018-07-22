@@ -40,15 +40,15 @@ var numbs = [0, 2, 4, 6, 8];
 Invoque a função criada acima, fazendo-a retornar todos os valores do último
 array criado.
 */
-position(numbs, 0);
+console.log(position(numbs, 0));
 //0
-position(numbs, 1);
+console.log(position(numbs, 1));
 //2
-position(numbs, 2);
+console.log(position(numbs, 2));
 //4
-position(numbs, 3);
+console.log(position(numbs, 3));
 //6
-position(numbs, 4);
+console.log(position(numbs, 4));
 //8
 
 /*
@@ -66,22 +66,18 @@ propriedades:
 os livros.
 */
 function book(name){
-    var obj = { SítioDoPicapauAmarelo: { qtdePages: 50, autor: 'Monteiro Lobato', editora: 'Globo'},
-                Codelgniter: { qtdePages: 30, autor: undefined, editora: 'Novatec'},
-                TurmaDaMonica: { qtdePages: 150, autor: 'Maurício de Souza', editora: 'Abril'}
+    var obj = { 'Sítio do picapau amarelo': { qtdePages: 50, autor: 'Monteiro Lobato', editora: 'Globo'},
+                'Codelgniter': { qtdePages: 30, autor: undefined, editora: 'Novatec'},
+                'Turma da Monica': { qtdePages: 150, autor: 'Maurício de Souza', editora: 'Abril'}
     }
     
-    if(!name){
-        return obj;
-    }else{
-        return obj.name;
-    }
+    return !name ? obj : obj[name] ;    
 }
 
 /*
 Usando a função criada acima, imprima o objeto com todos os livros.
 */
-book();
+console.log(book());
 /*{ 'SítioDoPicapauAmarelo': { qtdePages: 50, autor: 'Monteiro Lobato', editora: 'Globo' },
 Codelgniter: { qtdePages: 30, autor: undefined, editora: 'Novatec' },
 TurmaDaMonica: { qtdePages: 150, autor: 'Maurício de Souza', editora: 'Abril' } }*/
@@ -91,21 +87,23 @@ Ainda com a função acima, imprima a quantidade de páginas de um livro qualque
 usando a frase:
 "O livro [NOME_DO_LIVRO] tem [X] páginas!"
 */
-// ?
+console.log("O livro Codelgniter tem "+ book('Codelgniter').qtdePages+" páginas!");
 
 /*
 Ainda com a função acima, imprima o nome do autor de um livro qualquer, usando
 a frase:
 "O autor do livro [NOME_DO_LIVRO] é [AUTOR]."
 */
-// ?
+var nameBook = 'Turma da Monica';
+console.log("O autor do livro "+nameBook+" é "+book(nameBook).autor+".");
 
 /*
 Ainda com a função acima, imprima o nome da editora de um livro qualquer, usando
 a frase:
 "O livro [NOME_DO_LIVRO] foi publicado pela editora [NOME_DA_EDITORA]."
 */
-// ?
+var nameBook = 'Sítio do picapau amarelo';
+console.log("O livro "+nameBook+" foi publicado pela editora "+book(nameBook).editora+".");
 
 
 
