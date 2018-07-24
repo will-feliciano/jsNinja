@@ -3,38 +3,44 @@ Declare uma variável chamada `sum` e atribua a ela uma função chamada
 `calculateSum`. A função deve receber dois parâmetros e retornar a soma
 desses parâmetros.
 */
-// ?
+var sum = function calculateSum(v1, v2){
+    return v1+v2;
+}
 
 /*
 Invoque a função criada acima, passando dois números que serão somados, e mostre
 o resultado no console, com a frase:
 "A soma de [VALOR 1] e [VALOR2] é igual a [RESULTADO]."
 */
-// ?
+var n1 = 4, n2 = 2;
+console.log("A soma de "+ n1 +" e "+ n2 +" é igual a "+ sum(2,4)) +".";
+
 
 /*
 Mostre no console o nome da função criada acima, com a frase:
 "O nome da função que faz a soma é [NOME DA FUNÇÃO]."
 */
-// ?
+console.log(sum.name);
 
 /*
 Crie uma função literal chamada `showName`. Essa função deve retornar o
 seu nome.
 */
-// ?
+function showName(){
+    return 'Will';
+}
 
 /*
 Declare uma variável chamada `varShowName` que recebe a função criada acima.
 */
-// ?
+var showName = showName;
 
 /*
 Usando a variável criada acima, mostre no console o nome e o retorno da função
 atribuída a ela, com a seguinte frase:
 "A função [NOME DA FUNÇÃO] retorna [RETORNO DA FUNÇÃO]."
 */
-// ?
+console.log("A função "+ showName.name +" retorna "+ showName() +".")
 
 /*
 Crie uma função literal chamada `calculator`, que funcione assim:
@@ -48,13 +54,39 @@ vai efetuar. Será uma string com os valores `+`, `-`, `*`, `/` ou `%`;
   - Se o operador não for válido, retornar a frase:
   "Operação inválida."
 */
-// ?
+
+function calculator(op){
+    function calc2(num1, num2){
+        if(op === '+'){
+            var result = num1+num2;
+        }
+        else if(op === '-'){
+            var result = num1-num2;
+        }
+        else if(op === '*'){
+            var result = num1*num2;
+        }
+        else if(op === '/'){
+            var result = num1/num2;
+        }
+        else if(op === '%'){
+            var result = num1%num2;
+        }
+        else{
+            return "Operação inválida.";
+        }
+
+        return "Resultado da operação: "+ num1 + op + num2 +" = "+ result +".";
+    }
+    return calc2();
+}
 
 /*
 Declare uma variável chamada `sum`, que receberá a função acima, passando como
 parâmetro o operador de soma.
 */
-// ?
+var sum = calculator;
+console.log(calculator('+')(2,4));
 
 /*
 Agora `sum` é uma função. Mostre no console a soma de dois números, usando ela.
