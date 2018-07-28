@@ -46,7 +46,8 @@
     Crie um novo array chamado `newSul`, que receba somente os estados do sul,
     pegando do array `brasil`. Não remova esses itens de `brasil`.
     */
-    var newSul = ['PR','RS','SC'];
+    //var newSul = ['PR','RS','SC'];
+    var newSul = brasil.slice(3,6);
 
     /*
     Mostre no console os estados que estão em `newSul`.
@@ -82,7 +83,7 @@
     Adicione os estados do `nordeste` ao array `brasil`. Esses estados devem
     ficar no mesmo nível que os estados já existentes, não em um array separado.
     */
-    var brasil = brasil.concat(nordeste);
+    brasil = brasil.concat(nordeste);
     
     /*
     Mostre no console os estados em `newSudeste`.
@@ -123,8 +124,11 @@
     - "Nem todos os estados tem mais de 7 letras!"
     */
     console.log( '\nTodos os estados de `brasil` tem mais de 7 letras?' );
-    // ?
+    var every = brasil.every(function(item){
+        return item.length > 2;
+    });
 
+    console.log( every ? 'Sim, todos os estados tem mais de 7 letras!' : 'Nem todos os estados tem mais de 7 letras!' );
     /*
     Percorra o array `brasil` e verifique se o Ceará está incluído, atribuindo o
     resultado à uma variável. Se esse estado existir no array, mostrar a frase no
