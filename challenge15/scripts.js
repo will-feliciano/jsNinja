@@ -36,9 +36,10 @@
             return this.age;   
         };
 
-        this.addAge = function(ageNew){
-            this.age += ageNew;
-        }
+        this.addAge = function(){
+            this.age += arguments[0];
+            return this;
+        };
     }
 
     /*
@@ -77,13 +78,9 @@
     */
     console.log( '\nNova idade das pessoas:' );
 
-    will.addAge(2);
-    wal.addAge(4);
-    jacy.addAge(1);
-
-    console.log(will.getFullName()+' agora tem '+will.getAge()+' anos.');
-    console.log(wal.getFullName()+' agora tem '+wal.getAge()+' anos.');
-    console.log(jacy.getFullName()+' agora tem '+jacy.getAge()+' anos.');
+    console.log(will.getFullName()+' agora tem '+will.addAge(2).getAge()+' anos.');
+    console.log(wal.getFullName()+' agora tem '+wal.addAge(4).getAge()+' anos.');
+    console.log(jacy.getFullName()+' agora tem '+jacy.addAge(-2).getAge()+' anos.');
 
 })();
 
