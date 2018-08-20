@@ -1,4 +1,6 @@
- (function(){
+ (function(dct){
+
+    'use-strict';
 
     /*
     1. Envolva todo o conteúdo desse desafio em uma IIFE.
@@ -15,19 +17,31 @@
     nome, `username` deve receber "Desconhecido".
     Com a resposta, mostre um alert com a mensagem "Bem vindo [USERNAME]!"
     */
-    // ?
+    
+    var username = prompt('Qual o seu nome?');
+
+    username = !username ? 'Desconhecido' : username ;    
+
+    alert("Bem vindo "+ username);
+        
+    
+
 
     /*
     Agora, pergunte ao usuário "Qual o seu e-mail?", atribuindo o resultado à
     uma variável chamada `email`.
     */
-    // ?
+    
+    var email = prompt('Qual o seu email?');
+
 
     /*
     - Selecione o input de "Nome", atribuindo-o à uma variável chamada
     `$inputUsername`.
     */
-    // ?
+    
+    $inputUsername = dct.getElementsByTagName('input');
+    console.log($inputUsername);
 
     /*
     - Selecione o input de "Email", atribuindo-o à uma variável chamada
@@ -103,4 +117,4 @@
     */
     // ?
 
-})();
+})(window, document);
