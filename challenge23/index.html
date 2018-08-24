@@ -1,18 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
     <head>
         <meta charset="utf-8" />
         <title>Challenge 23</title>
         <style>
             body { font-family: sans-serif }   
 
-            
+            .col-titulo{
 
+            }
+
+            .col-label{
+
+            }
+            
+            .btns{
+                font-weight: bold;
+                font-size: 12pt;
+                border: 1px solid #fff;;
+                border-radius: 5px;
+                padding: 10px;
+                width: 40px;
+            }
+
+            .btn-blue{
+                background-color: #2C76D0;
+                color: #fff;
+            }
+
+            .btn-orange{
+                background-color: #FF4500;
+                color: #fff;
+            }
+            
         </style>
     </head>
     <body>
-
+        <div style="width: 12%; float: left; padding-top: 5px;">
+            <p style="font-weight: bold; font-size: 17pt;">Calculadora</p>
+        </div>
         
+        <div style="width: 14%; float: left;">
+            <h1>numb</h1>
+        </div>
+
+        <div style="width: 13%; float: left; padding-top: 25px;">
+            <input style="height: 20px;" data-lb="visor"/>
+        </div>
+
+        <nav style="width: 60%; float: right; padding-top: 20px;">
+            <button class="btns btn-blue" data-btn="op" data-op="clean" value="ce">CE</button>
+            <button class="btns btn-orange" data-btn="op" data-op="calc" value="=">=</button>
+            <button class="btns btn-blue" data-btn="numb" value="1">1</button>
+            <button class="btns btn-blue" data-btn="numb" value="2">2</button>
+            <button class="btns btn-blue" data-btn="numb" value="3">3</button>
+            <button class="btns btn-blue" data-btn="numb" value="4">4</button>
+            <button class="btns btn-blue" data-btn="numb" value="5">5</button>
+            <button class="btns btn-blue" data-btn="numb" value="6">6</button>
+            <button class="btns btn-blue" data-btn="numb" value="7">7</button>
+            <button class="btns btn-blue" data-btn="numb" value="8">8</button>
+            <button class="btns btn-blue" data-btn="numb" value="9">9</button>
+            <button class="btns btn-blue" data-btn="numb" value="0">0</button>
+            <button class="btns btn-orange" data-btn="op" data-op="plus" value="+">+</button>
+            <button class="btns btn-orange" data-btn="op" data-op="minus" value="-">-</button>
+            <button class="btns btn-orange" data-btn="op" data-op="multi" value="x">x</button>
+            <button class="btns btn-orange" data-btn="op" data-op="div" value="/">/</button>
+        </nav>
+
     </body>
     <script src="main.js"></script>        
 </html>

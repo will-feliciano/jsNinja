@@ -20,7 +20,7 @@
 
     var interval;
 
-    var $timer = dct.querySelector('[data-lb="painel"]')
+    var $timer = dct.querySelector('[data-lb="painel"]');
 
     var $btnStart = dct.querySelector('[data-btn="start"]');
 
