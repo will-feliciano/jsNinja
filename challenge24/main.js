@@ -49,11 +49,17 @@
 
     
     function isOperation(number){
-        var operations = ['+','-','x','/'];
+        var operations = getOperations();
         var lastIt = number.split('').pop();        
         return operations.some(function(op){
             return op === lastIt;
         });       
+    }
+
+    function getOperations(){
+        return Array.prototype.map.call($btnsOpers, function(button){
+            return button.value;
+        });
     }
 
     function remLastIt(string){
@@ -65,8 +71,12 @@
 
     function clickCalc(){
         $visor.value = remLastIt($visor.value);
-        var vars = $visor.value.match(/\d+[+x+-]?/g);
+        var vars = $visor.value.match(getRegexOp());
         $visor.value = vars.reduce(calculateAllValues);
+    }
+
+    function getRegexOp(){
+        return new RegExp('\\d+['+ getOperations().join('') +']?','g');
     }
 
     function calculateAllValues(acc, act){
@@ -74,22 +84,22 @@
         var operador = acc.split('').pop();
         var lvalue = remLastIt(act);
         var lop = isOperation(act)? act.split('').pop() : '' ;
-        return doOperation(operator);       
+        return doOperation(operador, fvalue, lvalue) + lop;  
     }
 
-    function doOperation(operator){
+    function doOperation(operador, fvalue, lvalue){
         switch(operador){
             case '+':
-                return Number(fvalue) + Number(lvalue) + lop;
+                return (Number(fvalue) + Number(lvalue));
             case '-':
-                return Number(fvalue) - Number(lvalue) + lop;
+                return (Number(fvalue) - Number(lvalue));
             case 'x':
-                return Number(fvalue) * Number(lvalue) + lop;
+                return (Number(fvalue) * Number(lvalue));
             case '/':
-                return Number(fvalue) / Number(lvalue) + lop;
+                return (Number(fvalue) / Number(lvalue));
                                 
         }
     }
    
     initialize();
-})(windows, document);
+})(window, document);
