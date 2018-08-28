@@ -22,7 +22,7 @@
     // ?
 
     function DOM(objs){
-        this.element = document.querySelectorAll(objs);        
+        this.element = document.querySelectorAll(objs);      
     }
 
     DOM.prototype.on = function on(evtType, func) {
