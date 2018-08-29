@@ -6,22 +6,24 @@
     </head>
     <body>
         <div class="env">
-            <form action="#" method="post">
+            <form data-form="cep">
                 CEP:
-                <input type="text" name="cep"/>
-                <input type="submit" value="Go!"/>
+                <input type="text" data-js="cep"/>
+                <button type="submit" data-btn="submit">Go!</button>
             </form>            
         </div>
         <br/>
         <div class="infos">
             <label>Logradouro:</label>
-            <input type="text" name="logradouro"/>
+            <span data-js="logradouro">-</span><br/>
             <label>Bairro:</label>
-            <input type="text" name="bairro"/>
+            <span data-js="bairro">-</span><br/>
+            <label>Estado:</label>
+            <span data-js="bairro">-</span><br/>
             <label>Cidade:</label>
-            <input type="text" name="cidade"/>
+            <span data-js="cidade">-</span><br/>
             <label>CEP:</label>
-            <input type="text" name="cep"/>
+            <span data-js="cep">-</span><br/>
         </div>        
         <script src="main.js"></script>
     </body>

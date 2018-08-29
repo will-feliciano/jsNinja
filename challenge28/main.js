@@ -120,6 +120,23 @@
     //console.log('$a é filho de body?', $a.get()[0].parentNode === document.body);
 
     
-    console.log($a.isNull());
+    //console.log($a.isNull());
+
+    var $formCEP = new DOM('[data-form="cep"]');
+    $formCEP.on('submit', actCep);
+
+    function actCep(event){
+        event.preventDefault();
+        var ajax = new XMLHttpRequest();
+        ajax.open('GET', 'https://viacep.com.br/ws/[CEP]/json/');
+        ajax.send();
+        ajax.addEventListener('readystatechange', actChange);
+    }
+
+    function actChange(){
+        if(ajax.readyState === 4 && ajax.status === 200){
+            console.log();
+        }
+    }
 
 })(window, document);
