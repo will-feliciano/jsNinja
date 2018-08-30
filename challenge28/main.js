@@ -1,4 +1,4 @@
-(function(win, doc){
+(function(DOM){
 
     'use-strict';
 
@@ -28,115 +28,105 @@
     - Utilize a lib DOM criada anteriormente para facilitar a manipulação e
     adicionar as informações em tela.
     */
-
-    function DOM(objs){
-        this.element = document.querySelectorAll(objs);      
-    }
-
-    DOM.prototype.on = function on(evtType, func) {
-        Array.prototype.forEach.call(this.element, function(element){
-            element.addEventListener(evtType, func, false);
-        });          
-    };
-
-    DOM.prototype.off = function off(evtType, func) {
-        Array.prototype.forEach.call(this.element, function(element){
-            element.removeEventListener(evtType, func, false);
-        });
-    };
-
-
-    DOM.prototype.get = function get() {
-        return this.element;
-    };
-
-
-    DOM.prototype.forEach = function forEach() {
-        return Array.prototype.forEach.apply(this.element, arguments);
-    };
-
-    DOM.prototype.map = function map() {
-        return Array.prototype.map.apply(this.element, arguments);
-    };
-
-    DOM.prototype.filter = function filter() {
-        return Array.prototype.filter.apply(this.element, arguments);
-    };
-
-    DOM.prototype.reduce = function reduce() {
-        return Array.prototype.reduce.apply(this.element, arguments);
-    };
-
-    DOM.prototype.reduceRight = function reduceRight() {
-        return Array.prototype.reduceRight.apply(this.element, arguments);
-    };
-
-    DOM.prototype.every = function every() {
-        return Array.prototype.every.apply(this.element, arguments);
-    };
-
-    DOM.prototype.some = function some() {
-        return Array.prototype.some.apply(this.element, arguments);
-    };
-
-
-   
-    DOM.prototype.isArray = function isArray(obj) {
-        return Object.prototype.toString.call(obj) === '[object Array]';
-    }
-
-    DOM.prototype.isObject = function isObject(obj) {
-        return Object.prototype.toString.call(obj) === '[object Object]';
-    }
-
-    DOM.prototype.isFunction = function isFunction(obj) {
-        return Object.prototype.toString.call(obj) === '[object Function]';
-    }
-
-    DOM.prototype.isNumber = function isNumber(obj) {
-        return Object.prototype.toString.call(obj) === '[object Number]';
-    }
-
-    DOM.prototype.isString = function isString(obj) {
-        return Object.prototype.toString.call(obj) === '[object String]';
-    }
-
-    DOM.prototype.isBoolean = function isBoolean(obj) {
-        return Object.prototype.toString.call(obj) === '[object Boolean]';
-    }
-
-    DOM.prototype.isNull = function isNull(obj) {
-        return Object.prototype.toString.call(obj) === '[object Null]'
-        || Object.prototype.toString.call(obj) === '[object Undefined]';
-    }
-
-    var $a = new DOM('[data-js="link"]');
-    $a.on('click', function(e) {
-    e.preventDefault();
-    console.log('clicou');
-    });
-
-    console.log('Elementos selecionados:', $a.get());
-    //console.log('$a é filho de body?', $a.get()[0].parentNode === document.body);
-
     
-    //console.log($a.isNull());
+    function app(){
 
-    var $formCEP = new DOM('[data-form="cep"]');
-    $formCEP.on('submit', actCep);
+        var $formCEP = new DOM('[data-form="cep"]');
+        var $inputCEP = new DOM('[data-js="cep"]');
+        var $logradouro = new DOM('[data-js="logradouro"]');
+        var $bairro = new DOM('[data-js="bairro"]');
+        var $uf = new DOM('[data-js="uf"]');
+        var $cidade = new DOM('[data-js="cidade"]');
+        var $cep = new DOM('[data-js="cep"]');
+        var $status = new DOM('[data-js="status"]');
+        var aj = new XMLHttpRequest();
+        $formCEP.on('submit', actCep);
 
-    function actCep(event){
-        event.preventDefault();
-        var ajax = new XMLHttpRequest();
-        ajax.open('GET', 'https://viacep.com.br/ws/[CEP]/json/');
-        ajax.send();
-        ajax.addEventListener('readystatechange', actChange);
-    }
-
-    function actChange(){
-        if(ajax.readyState === 4 && ajax.status === 200){
-            console.log();
+        function actCep(event){
+            event.preventDefault();              
+            aj.open('GET', getURL());
+            aj.send();
+            msgs('loading');
+            aj.addEventListener('readystatechange', actChange);
         }
+    
+        function getURL(){
+            return replaceCEP('http://apps.widenet.com.br/busca-cep/api/cep/[CEP].json');
+        }
+    
+        function clearCEP(){
+            return $inputCEP.get()[0].value.replace(/\D/g, '');
+        }
+    
+        function actChange(){
+            if(isReqOk()){
+                changeForm();   
+                msgs('ok');                     
+            }
+            //console.log('deu ruim');
+        }
+    
+        function isReqOk(){
+            return aj.readyState === 4 && aj.status === 200;
+        }
+    
+        function changeForm(){
+            var data = parseData();
+            if(!data){
+                msgs('error');
+                data = clearData();            
+            }
+            
+            //console.log(data);
+          
+            $logradouro.get()[0].textContent = data.address;
+            $bairro.get()[0].textContent = data.district;
+            $uf.get()[0].textContent = data.state;
+            $cidade.get()[0].textContent = data.city;
+            $cep.get()[0].textContent = data.code;
+        }
+    
+        function clearData(){
+            return {
+                address: '-',
+                district: '-',
+                state: '-',
+                city: '-',
+                code: '-'
+            }
+        }
+    
+        function parseData(){
+            var res;
+            try{
+                res = JSON.parse(aj.responseText);
+            }
+            catch(e){
+                res = null;
+            }
+            return res;
+        }
+    
+        function msgs(type){
+            var messages = {
+                loading: replaceCEP("Buscando informações para o CEP [CEP]..."),
+                error: replaceCEP("Não encontramos o endereço para o CEP [CEP]."),
+                ok: replaceCEP("Endereço referente ao CEP [CEP]:")
+            };        
+            $status.get()[0].textContent = messages[type];
+        }
+    
+        function replaceCEP(msg){
+            return msg.replace('[CEP]', clearCEP());
+        }
+        
+        return {
+            msgs: msgs,
+            replaceCEP: replaceCEP
+        };
     }
 
-})(window, document);
+    window.app = app();
+    app();    
+
+})(window.DOM);
