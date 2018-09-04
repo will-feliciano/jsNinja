@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <title>Carros</title>        
+    </head>
+    <body>
+        <div class="env">
+            <form data-form="cep">
+                CEP:
+                <input type="text" data-js="cep"/>
+                <button type="submit" data-btn="submit">Go!</button>
+            </form>            
+        </div>
+        <br/>
+        <div data-js="status"></div>
+        <br/>
+        <div class="infos">
+            <label>Logradouro:</label>
+            <span data-js="logradouro">-</span><br/>
+            <label>Bairro:</label>
+            <span data-js="bairro">-</span><br/>
+            <label>Estado:</label>
+            <span data-js="uf">-</span><br/>
+            <label>Cidade:</label>
+            <span data-js="cidade">-</span><br/>
+            <label>CEP:</label>
+            <span data-js="cep">-</span><br/>
+        </div>
+        <script src="../lib_dom/dom.js"></script>       
+        <script src="main.js"></script>
+    </body>
+</html>  
