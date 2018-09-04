@@ -5,29 +5,64 @@
         <title>Carros</title>        
     </head>
     <body>
-        <div class="env">
-            <form data-form="cep">
-                CEP:
-                <input type="text" data-js="cep"/>
-                <button type="submit" data-btn="submit">Go!</button>
-            </form>            
-        </div>
-        <br/>
-        <div data-js="status"></div>
-        <br/>
-        <div class="infos">
-            <label>Logradouro:</label>
-            <span data-js="logradouro">-</span><br/>
-            <label>Bairro:</label>
-            <span data-js="bairro">-</span><br/>
-            <label>Estado:</label>
-            <span data-js="uf">-</span><br/>
-            <label>Cidade:</label>
-            <span data-js="cidade">-</span><br/>
-            <label>CEP:</label>
-            <span data-js="cep">-</span><br/>
-        </div>
-        <script src="../lib_dom/dom.js"></script>       
+        <header>
+            <h1>
+                <span data-js="cp-name"></span>
+                <span data-js="cp-tel"></span>
+            </h1>
+        </header>
+
+        <form action="/" data-js="form-reg">
+            <ul>
+                <li>
+                    <label>Imagem do carro:</label>
+                    <input type="url"/>
+                </li>
+                <li>
+                    <label>Marca/Modelo:</label>
+                    <input type="text"/>
+                </li>
+                <li>
+                    <label>Ano:</label>
+                    <input type="text"/>
+                </li>
+                <li>
+                    <label>Placa:</label>
+                    <input type="text"/>
+                </li>
+                <li>
+                    <label>Cor:</label>
+                    <input type="text"/>
+                </li>
+                <li>
+                    <button type="submit">Cadastrar</button>
+                </li>
+            </ul>
+        </form>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Imagem do Carro</th>
+                    <th>Marca / Modelo</th>
+                    <th>Ano</th>
+                    <th>Placa</th>
+                    <th>Cor</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <script src="dom.js"></script>       
         <script src="main.js"></script>
     </body>
 </html>  
+
