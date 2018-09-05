@@ -1,4 +1,4 @@
-(function(){
+(function(DOM){
     'use-strict';
 
     /*
@@ -31,9 +31,49 @@
     que será nomeado de "app".
     */
 
+    function app(){
+        return{
+            init: function(){
+                this.cpInfo();
+            },
 
+            initEvts: function initEvts(){
+                $('[data-js="form-register"]').on('submit', this.handleSub);
+            },
 
+            handleSub: function handleSub(){
+              event.preventDefault();
+                
+            },
+
+            cpInfo: function cpInfo(){
+                var aj = new XMLHttpRequest();
+                aj.open('GET', '/company.json', true);
+                aj.send();
+                aj.addEventListener('readystatechange', this.getCP, false);
+            },
+
+            getCP: function getCP(){
+                if(!app().isRdy.call(this))
+                    return;
+                    
+                var data = JSON.parse(this.responseText);
+                var $CPname = $('[data-js="cp-name"]');
+                var $CPtel = $('[data-js="cp-tel"]');
+
+                $CPname.get().textContent = data.name;
+                $CPtel.get().textContent = data.phone;
+            },
+
+            isRdy: function isRdy(){
+                return this.readyState === 4 && this.status === 200;
+            }
+        };
+    }
+
+    app().init();
 
     
+    
 
-})();
+})(window.DOM);

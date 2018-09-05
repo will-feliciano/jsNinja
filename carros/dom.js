@@ -3,7 +3,14 @@
     'use-strict';
 
     function DOM(objs){
-        this.element = doc.querySelectorAll(objs);      
+        if(!(this instanceof DOM)){
+            return new DOM(objs);
+        }
+
+        this.element = doc.querySelectorAll(objs);
+        if(this.objs.lenght === 1){
+            return this.get();
+        }                
     }
 
     DOM.prototype.on = function on(evtType, func) {
@@ -19,8 +26,11 @@
     };
 
 
-    DOM.prototype.get = function get() {
-        return this.element;
+    DOM.prototype.get = function get(index) {
+        if(!index){
+            return this.element[0];
+        }
+        return this.element[index];
     };
 
 

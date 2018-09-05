@@ -7,7 +7,7 @@
     <body>
         <header>
             <h1>
-                <span data-js="cp-name"></span>
+                <span data-js="cp-name"></span> - 
                 <span data-js="cp-tel"></span>
             </h1>
         </header>
@@ -16,23 +16,23 @@
             <ul>
                 <li>
                     <label>Imagem do carro:</label>
-                    <input type="url"/>
+                    <input type="url" data-js="img"/>
                 </li>
                 <li>
                     <label>Marca/Modelo:</label>
-                    <input type="text"/>
+                    <input type="text" data-js="model"/>
                 </li>
                 <li>
                     <label>Ano:</label>
-                    <input type="text"/>
+                    <input type="text" data-js="year"/>
                 </li>
                 <li>
                     <label>Placa:</label>
-                    <input type="text"/>
+                    <input type="text" data-js="plate"/>
                 </li>
                 <li>
                     <label>Cor:</label>
-                    <input type="text"/>
+                    <input type="text" data-js="color"/>
                 </li>
                 <li>
                     <button type="submit">Cadastrar</button>
@@ -50,7 +50,7 @@
                     <th>Cor</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody data-js="table-cars">
                 <tr>
                     <td></td>
                     <td></td>
