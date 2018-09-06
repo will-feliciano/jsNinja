@@ -1,4 +1,4 @@
-(function(DOM){
+(function($){
     'use-strict';
 
     /*
@@ -33,12 +33,13 @@
 
     function app(){
         return{
-            init: function(){
+            init: function init(){
                 this.cpInfo();
+                this.initEvts();
             },
 
             initEvts: function initEvts(){
-                $('[data-js="form-register"]').on('submit', this.handleSub);
+                $('[data-js="form-reg"]').on('submit', this.handleSub);
             },
 
             handleSub: function handleSub(){
@@ -48,7 +49,7 @@
 
             cpInfo: function cpInfo(){
                 var aj = new XMLHttpRequest();
-                aj.open('GET', '/company.json', true);
+                aj.open('GET','/company.json', true);
                 aj.send();
                 aj.addEventListener('readystatechange', this.getCP, false);
             },
@@ -58,11 +59,11 @@
                     return;
                     
                 var data = JSON.parse(this.responseText);
-                var $CPname = $('[data-js="cp-name"]');
-                var $CPtel = $('[data-js="cp-tel"]');
+                var $CPname = $('[data-js="cp-name"]').get();
+                var $CPtel = $('[data-js="cp-tel"]').get();
 
-                $CPname.get().textContent = data.name;
-                $CPtel.get().textContent = data.phone;
+                $CPname.textContent = data.name;
+                $CPtel.textContent = data.phone;
             },
 
             isRdy: function isRdy(){

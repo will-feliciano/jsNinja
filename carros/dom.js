@@ -8,9 +8,9 @@
         }
 
         this.element = doc.querySelectorAll(objs);
-        if(this.objs.lenght === 1){
+        /*if(this.objs.length === 1){
             return this.get();
-        }                
+        }       */         
     }
 
     DOM.prototype.on = function on(evtType, func) {
