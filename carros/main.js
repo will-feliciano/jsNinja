@@ -31,9 +31,10 @@
     que será nomeado de "app".
     */
 
-    function app(){
+    var app = (function() {
         return{
             init: function init(){
+                console.log('app init');
                 this.cpInfo();
                 this.initEvts();
             },
@@ -42,9 +43,18 @@
                 $('[data-js="form-reg"]').on('submit', this.handleSub);
             },
 
-            handleSub: function handleSub(){
-              event.preventDefault();
-                
+            handleSub: function handleSub(ev){
+                ev.preventDefault();
+                console.log('submit');
+                var $tableCar = $('[data-js="table-cars"]').get();
+                $tableCar.appendChild(app.createNewCar());
+            },
+
+            createNewCar: function createNewCar(){
+                var $fragment = document.createDocumentFragment();
+                var $tr = document.createElement('tr');
+                var $td = document.createElement('td');
+                //parei aqui
             },
 
             cpInfo: function cpInfo(){
@@ -70,7 +80,7 @@
                 return this.readyState === 4 && this.status === 200;
             }
         };
-    }
+    })();
 
     app().init();
 
