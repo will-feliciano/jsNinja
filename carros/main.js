@@ -53,8 +53,28 @@
             createNewCar: function createNewCar(){
                 var $fragment = document.createDocumentFragment();
                 var $tr = document.createElement('tr');
-                var $td = document.createElement('td');
-                //parei aqui
+                var $tdImg = document.createElement('td');
+                var $tdBrand = document.createElement('td');
+                var $tdYear = document.createElement('td');
+                var $tdPlate = document.createElement('td');
+                var $tdColor = document.createElement('td');
+
+                $image.setAtribute('src', $('[data-js="image"]').get().value);
+                $tdImg.appendChild($image);
+
+                $tdImg.textContent = $('[data-js="img"]').get().value;
+                $tdBrand.textContent = $('[data-js="brand"]').get().value;
+                $tdYear.textContent = $('[data-js="year"]').get().value;
+                $tdPlate.textContent = $('[data-js="plate"]').get().value;
+                $tdColor.textContent = $('[data-js="color"]').get().value;
+                
+                $tr.appendChild($tdImg);
+                $tr.appendChild($tdBrand);
+                $tr.appendChild($tdYear);
+                $tr.appendChild($tdPlate);
+                $tr.appendChild($tdColor);
+
+                return $fragment;
             },
 
             cpInfo: function cpInfo(){
